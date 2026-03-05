@@ -73,6 +73,10 @@ Para ello, se generó una copia exacta de la estructura y los registros de la ta
 
 Esta estrategia permite mantener intacto el dataset original mientras se realizan modificaciones necesarias para el análisis.
 
+CREATE TABLE pro_mark.marketing_campaign_clean AS
+SELECT *
+FROM pro_mark.marketing_campaign;
+
 ![Vista previa del dataset](images/conjunto-de-datos-1.png)
 
 ### Beneficios de trabajar con una copia
