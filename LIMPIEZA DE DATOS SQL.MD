@@ -49,6 +49,9 @@ Este tipo de dataset es comúnmente utilizado en proyectos de análisis de marke
 | Z_Revenue | Ingreso generado por contacto (valor constante en el dataset) |
 | Response | Variable objetivo: 1 si el cliente aceptó la oferta en la última campaña |
 
+### Proceso de limpieza paso a paso
+
+
 ### Conjunto de datos original
 
 Antes de comenzar el proceso de limpieza, es necesario examinar la estructura del conjunto de datos original. Este paso permite comprender las variables disponibles, identificar posibles inconsistencias y evaluar la calidad inicial de la información.
@@ -61,6 +64,6 @@ A continuación se muestra una vista previa de las primeras filas del dataset or
 ![Vista previa del dataset](images/conjunto-de-datos-2.png)
 ![Vista previa del dataset](images/conjunto-de-datos-3.png)
 
-Proceso de limpieza paso a paso
+
 
 
