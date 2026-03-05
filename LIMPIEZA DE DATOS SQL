@@ -1,1 +1,53 @@
+ Descripción del Dataset
 
+El conjunto de datos utilizado en este proyecto corresponde a una base de datos de marketing que contiene información sobre clientes,
+su comportamiento de compra y su interacción con diferentes campañas promocionales de una empresa.
+
+El objetivo principal del dataset es analizar el comportamiento de los clientes y predecir qué usuarios tienen mayor probabilidad de responder positivamente a una campaña de marketing.
+Este tipo de análisis permite a las empresas optimizar sus estrategias comerciales, mejorar la segmentación de clientes y aumentar la eficiencia de las campañas promocionales.
+
+La base de datos incluye información demográfica de los clientes, datos relacionados con sus ingresos, composición del hogar, historial de compras y nivel de interacción con los diferentes canales de venta de la empresa.
+
+Además, el dataset registra la respuesta de los clientes a varias campañas de marketing anteriores, lo que permite evaluar el impacto de las estrategias de comunicación y desarrollar modelos predictivos orientados a identificar clientes con mayor probabilidad de aceptar una oferta.
+
+
+
+Este tipo de dataset es comúnmente utilizado en proyectos de análisis de marketing, segmentación de clientes y desarrollo de modelos de predicción de respuesta a campañas. 
+
+
+### Principales variables del dataset
+### Descripción de las variables del dataset
+| Variable | Descripción |
+|----------|-------------|
+| ID | Identificador único del cliente |
+| Year_Birth | Año de nacimiento del cliente |
+| Education | Nivel educativo del cliente |
+| Marital_Status | Estado civil del cliente |
+| Income | Ingreso anual del hogar del cliente |
+| Kidhome | Número de niños pequeños en el hogar |
+| Teenhome | Número de adolescentes en el hogar |
+| Dt_Customer | Fecha en la que el cliente se registró en la empresa |
+| Recency | Número de días desde la última compra |
+| MntWines | Monto gastado en vinos en los últimos 2 años |
+| MntFruits | Monto gastado en frutas en los últimos 2 años |
+| MntMeatProducts | Monto gastado en productos cárnicos en los últimos 2 años |
+| MntFishProducts | Monto gastado en productos de pescado en los últimos 2 años |
+| MntSweetProducts | Monto gastado en productos dulces en los últimos 2 años |
+| MntGoldProds | Monto gastado en productos de oro en los últimos 2 años |
+| NumDealsPurchases | Número de compras realizadas con descuento |
+| NumWebPurchases | Número de compras realizadas en el sitio web |
+| NumCatalogPurchases | Número de compras realizadas mediante catálogo |
+| NumStorePurchases | Número de compras realizadas en tiendas físicas |
+| NumWebVisitsMonth | Número de visitas al sitio web en el último mes |
+| AcceptedCmp1 | 1 si el cliente aceptó la oferta en la primera campaña, 0 en caso contrario |
+| AcceptedCmp2 | 1 si el cliente aceptó la oferta en la segunda campaña, 0 en caso contrario |
+| AcceptedCmp3 | 1 si el cliente aceptó la oferta en la tercera campaña, 0 en caso contrario |
+| AcceptedCmp4 | 1 si el cliente aceptó la oferta en la cuarta campaña, 0 en caso contrario |
+| AcceptedCmp5 | 1 si el cliente aceptó la oferta en la quinta campaña, 0 en caso contrario |
+| Complain | 1 si el cliente presentó una queja en los últimos 2 años |
+| Z_CostContact | Costo de contacto asociado al cliente (valor constante en el dataset) |
+| Z_Revenue | Ingreso generado por contacto (valor constante en el dataset) |
+| Response | Variable objetivo: 1 si el cliente aceptó la oferta en la última campaña |
+
+
+Proceso de limpieza paso a paso
