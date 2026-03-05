@@ -52,6 +52,8 @@ Este tipo de dataset es comúnmente utilizado en proyectos de análisis de marke
 
 
 ![Vista previa del dataset](images/conjunto-de-datos-1.png)
+![Vista previa del dataset](images/conjunto-de-datos-2.png)
+![Vista previa del dataset](images/conjunto-de-datos-3.png)
 
 Proceso de limpieza paso a paso
 
