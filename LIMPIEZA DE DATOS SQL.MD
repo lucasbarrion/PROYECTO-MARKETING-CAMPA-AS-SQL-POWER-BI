@@ -65,5 +65,26 @@ A continuación se muestra una vista previa de TODAS las filas del dataset origi
 ![Vista previa del dataset](images/conjunto-de-datos-3.png)
 
 
+### Creando una tabla de trabajo
+
+Antes de comenzar el proceso de limpieza de datos, se creó una tabla de trabajo a partir del conjunto de datos original. Esta práctica es común en proyectos de análisis de datos, ya que permite realizar transformaciones y validaciones sin modificar la información base.
+
+Para ello, se generó una copia exacta de la estructura y los registros de la tabla marketing_campaign, creando una nueva tabla denominada marketing_campaign_clean dentro del esquema pro_mark. Sobre esta tabla se llevaron a cabo todas las operaciones de limpieza, transformación y preparación de los datos.
+
+Esta estrategia permite mantener intacto el dataset original mientras se realizan modificaciones necesarias para el análisis.
+
+![Vista previa del dataset](images/conjunto-de-datos-1.png)
+
+### Beneficios de trabajar con una copia
+
+Preservar la fuente de datos original en caso de errores o modificaciones incorrectas.
+
+Aplicar procesos de limpieza y transformación sin afectar los datos base.
+
+Facilitar la reproducibilidad del análisis, manteniendo separadas las etapas del procesamiento de datos.
+
+Permitir iteraciones y pruebas durante el proceso de limpieza sin comprometer la integridad del dataset original.
+
+
 
 
