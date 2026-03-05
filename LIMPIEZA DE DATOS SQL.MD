@@ -58,7 +58,7 @@ Antes de comenzar el proceso de limpieza, es necesario examinar la estructura de
 
 El dataset contiene información demográfica de los clientes, su comportamiento de compra y su interacción con distintas campañas de marketing. Estas variables serán utilizadas posteriormente para realizar el proceso de limpieza, validación y preparación de los datos para su análisis.
 
-A continuación se muestra una vista previa de las primeras filas del dataset original.
+A continuación se muestra una vista previa de TODAS las filas del dataset original. 
 
 ![Vista previa del dataset](images/conjunto-de-datos-1.png)
 ![Vista previa del dataset](images/conjunto-de-datos-2.png)
