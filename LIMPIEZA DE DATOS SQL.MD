@@ -164,7 +164,7 @@ CHANGE COLUMN `ï»¿ID` ID INT;
 Se verificó la presencia de espacios en blanco en las columnas categóricas del dataset (Education, Marital_Status y Dt_Customer) utilizando la función TRIM(). Esta revisión permite detectar inconsistencias en los valores de texto que podrían afectar procesos de filtrado, agrupación o análisis posterior.
 
 
-````markdown
+
 ```sql
 SELECT DISTINCT
     Marital_Status,
@@ -172,7 +172,7 @@ SELECT DISTINCT
 FROM pro_mark.marketing_campaign_clean;
 
 
-````markdown
+
 ```sql
 SELECT DISTINCT
     Dt_Customer,
