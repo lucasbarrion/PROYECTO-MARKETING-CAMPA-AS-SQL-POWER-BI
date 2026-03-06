@@ -88,5 +88,62 @@ FROM pro_mark.marketing_campaign;
 - **Permitir iteraciones y pruebas** durante el proceso de limpieza sin comprometer la integridad del dataset original.
 
 
+Paso 1: Verificación de registros duplicados
+
+El primer paso del proceso de limpieza consistió en verificar la existencia de registros duplicados dentro del conjunto de datos. La presencia de duplicados puede afectar la calidad del análisis, generando resultados sesgados o interpretaciones incorrectas.
+
+Inicialmente se comprobó si existían identificadores de cliente (ID) repetidos dentro del dataset. Para ello se comparó el número total de registros con la cantidad de identificadores únicos. Los resultados mostraron que todos los valores de ID son únicos, lo que indica que no existen duplicados directos de clientes en la base de datos.
+
+```sql
+SELECT 
+COUNT(*) AS total_filas,
+COUNT(DISTINCT ID) AS ids_unicos
+FROM pro_mark.marketing_campaign_clean;
+```
+![Vista previa del dataset](images/IDENTIFICAR-DUPLICADOS-1.PNG)
+Posteriormente, se analizó si existían registros con características idénticas entre distintos clientes, es decir, filas con los mismos valores en múltiples variables del dataset, aunque con identificadores diferentes. Este análisis permitió identificar combinaciones de variables repetidas que representan perfiles de clientes con características similares.
+
+```sql
+WITH duplicated_profiles AS (
+    SELECT 
+        `ï»¿ID`,
+        Year_Birth,
+        Education,
+        Marital_Status,
+        Income,
+        Kidhome,
+        Teenhome,
+        Dt_Customer,
+        Recency,
+        NumWebPurchases,
+        NumStorePurchases,
+        NumWebVisitsMonth,
+        Response,
+        ROW_NUMBER() OVER(
+            PARTITION BY 
+                Year_Birth,
+                Education,
+                Marital_Status,
+                Income,
+                Kidhome,
+                Teenhome,
+                Dt_Customer
+            ORDER BY `ï»¿ID`
+        ) AS row_num
+    FROM pro_mark.marketing_campaign_clean
+)
+
+SELECT *
+FROM duplicated_profiles
+WHERE row_num > 1;
+```
+```
+![Vista previa del dataset]images/IDENTIFICAR-DUPLICADOS-2.PNG
+
+Se utilizó un CTE (WITH) para organizar la consulta en dos pasos: primero generar el número de fila con ROW_NUMBER() y luego filtrar los registros con características similares. Este enfoque mejora la claridad y legibilidad del código sin modificar la tabla original.
+
+Sin embargo, dado que los identificadores de cliente son distintos, estos registros no se consideran duplicados reales, sino coincidencias en los atributos de algunos clientes. Por esta razón, no se eliminaron registros en esta etapa del proceso de limpieza.
+
+
 
 
