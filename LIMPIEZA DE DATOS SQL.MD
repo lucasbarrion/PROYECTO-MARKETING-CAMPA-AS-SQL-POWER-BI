@@ -161,7 +161,7 @@ CHANGE COLUMN `ï»¿ID` ID INT;
 
 ### Eliminación de espacios en blanco con TRIM
 
-Se verificó la presencia de espacios en blanco en las columnas categóricas del dataset (Education, Marital_Status y Dt_Customer) utilizando la función TRIM(). Esta revisión permite detectar inconsistencias en los valores de texto que podrían afectar procesos de filtrado, agrupación o análisis posterior.
+Se verificó la presencia de espacios en blanco en las columnas categóricas del dataset (Education Y  Marital_Status) utilizando la función TRIM(). Esta revisión permite detectar inconsistencias en los valores de texto que podrían afectar procesos de filtrado, agrupación o análisis posterior.
 
 
 
@@ -172,19 +172,10 @@ SELECT DISTINCT
 FROM pro_mark.marketing_campaign_clean;
 
 
-
-
-SELECT DISTINCT
-    Dt_Customer,
-    TRIM(Dt_Customer) AS dt_customer_clean
-FROM pro_mark.marketing_campaign_clean;
-```
-
-
 ```sql
 SELECT DISTINCT
     Education,
     TRIM(Education) AS education_clean
 FROM pro_mark.marketing_campaign_clean;
 ```
-
+![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-2.PNG)                                             ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-3.PNG)
