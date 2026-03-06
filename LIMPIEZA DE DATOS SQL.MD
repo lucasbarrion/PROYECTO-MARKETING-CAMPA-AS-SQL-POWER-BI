@@ -88,7 +88,7 @@ FROM pro_mark.marketing_campaign;
 - **Permitir iteraciones y pruebas** durante el proceso de limpieza sin comprometer la integridad del dataset original.
 
 
-Paso 1: Verificación de registros duplicados
+### Paso 1: Verificación de registros duplicados
 
 El primer paso del proceso de limpieza consistió en verificar la existencia de registros duplicados dentro del conjunto de datos. La presencia de duplicados puede afectar la calidad del análisis, generando resultados sesgados o interpretaciones incorrectas.
 
@@ -137,7 +137,7 @@ SELECT *
 FROM duplicated_profiles
 WHERE row_num > 1;
 ```
-```
+
 ![Vista previa del dataset](images/IDENTIFICAR-DUPLICADOS-2.PNG)
 
 Se utilizó un CTE (WITH) para organizar la consulta en dos pasos: primero generar el número de fila con ROW_NUMBER() y luego filtrar los registros con características similares. Este enfoque mejora la claridad y legibilidad del código sin modificar la tabla original.
