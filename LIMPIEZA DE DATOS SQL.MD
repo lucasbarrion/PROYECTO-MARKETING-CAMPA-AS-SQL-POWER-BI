@@ -138,7 +138,7 @@ FROM duplicated_profiles
 WHERE row_num > 1;
 ```
 ```
-![Vista previa del dataset]images/IDENTIFICAR-DUPLICADOS-2.PNG
+![Vista previa del dataset](images/IDENTIFICAR-DUPLICADOS-2.PNG)
 
 Se utilizó un CTE (WITH) para organizar la consulta en dos pasos: primero generar el número de fila con ROW_NUMBER() y luego filtrar los registros con características similares. Este enfoque mejora la claridad y legibilidad del código sin modificar la tabla original.
 
