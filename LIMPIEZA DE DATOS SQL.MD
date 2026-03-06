@@ -178,3 +178,54 @@ SELECT DISTINCT
 FROM pro_mark.marketing_campaign_clean;
 ```
 ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-2.PNG)                                             ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-3.PNG)
+
+
+
+
+
+
+## Eliminación de valores nulos — columna Income
+
+Se detectó que en varias filas faltaban valores en la columna Income (Ingresos), lo que podría sesgar el análisis de segmentación, el cálculo del poder adquisitivo y el comportamiento de gasto de los clientes.
+
+Hallazgo: Se encontraron 24 valores nulos (NULL) o en cero dentro de la columna Income.
+
+![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-5.PNG)  
+
+```sql
+SELECT *
+FROM pro_mark.marketing_campaign_clean
+WHERE Income IS NULL;
+```
+
+# Solución: Imputación por Mediana según el nivel de Educación
+Para no perder estos registros ni afectar la integridad del análisis, se optó por una imputación basada en contexto. En lugar de usar un promedio global, se reemplazaron los valores faltantes utilizando la mediana de ingresos de cada nivel educativo (Education).
+
+¿Por qué la mediana?
+Se eligió la mediana porque es una medida de tendencia central robusta que no se ve afectada por los valores atípicos (outliers) extremos presentes en este dataset, asegurando que el valor imputado sea representativo del grupo social del cliente.
+
+Valores calculados para la imputación:
+Utilizando una vista técnica (vista_mediana_education), se obtuvieron los siguientes valores redondeados para el reemplazo manual:
+
+```sql
+CREATE OR REPLACE VIEW pro_mark.vista_mediana_education AS
+SELECT 
+    Education, 
+    CAST(AVG(Income) AS SIGNED) AS mediana_ingreso
+FROM (
+    SELECT 
+        Education, 
+        Income,
+        ROW_NUMBER() OVER (PARTITION BY Education ORDER BY Income) as posicion,
+        COUNT(*) OVER (PARTITION BY Education) as total
+    FROM pro_mark.marketing_campaign_clean
+    WHERE Income IS NOT NULL 
+      AND Income > 0
+) AS subconsulta
+
+WHERE posicion IN (FLOOR((total + 1) / 2), CEIL((total + 1) / 2))
+GROUP BY Education;
+```
+
+![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-6.PNG)  
+
