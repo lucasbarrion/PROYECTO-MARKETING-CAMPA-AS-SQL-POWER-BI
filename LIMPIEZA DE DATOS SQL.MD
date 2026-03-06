@@ -145,5 +145,15 @@ Se utilizó un CTE (WITH) para organizar la consulta en dos pasos: primero gener
 Sin embargo, dado que los identificadores de cliente son distintos, estos registros no se consideran duplicados reales, sino coincidencias en los atributos de algunos clientes. Por esta razón, no se eliminaron registros en esta etapa del proceso de limpieza.
 
 
+### Paso 2: Estandarización de datos
+
+En esta etapa se realizó la estandarización de algunos elementos del dataset con el objetivo de mejorar la consistencia y facilitar el análisis posterior. Durante la revisión de la estructura de la tabla se detectó que la columna correspondiente al identificador del cliente presentaba caracteres adicionales debido al proceso de importación del archivo CSV.
+
+Para corregir este problema, se renombró la columna eliminando los caracteres innecesarios y dejando únicamente el nombre ID. Esta modificación permite trabajar con el identificador del cliente de forma clara y evita posibles errores en las consultas SQL posteriores.
+```sql
+ALTER TABLE pro_mark.marketing_campaign_clean
+CHANGE COLUMN `ï»¿ID` ID INT;
+```
+![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-1.PNG)
 
 
