@@ -172,7 +172,6 @@ SELECT DISTINCT
 FROM pro_mark.marketing_campaign_clean;
 
 
-```sql
 SELECT DISTINCT
     Education,
     TRIM(Education) AS education_clean
