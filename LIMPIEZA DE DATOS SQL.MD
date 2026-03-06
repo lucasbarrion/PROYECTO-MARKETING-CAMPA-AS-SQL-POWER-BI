@@ -100,7 +100,7 @@ COUNT(*) AS total_filas,
 COUNT(DISTINCT ID) AS ids_unicos
 FROM pro_mark.marketing_campaign_clean;
 ```
-![Vista previa del dataset](images/IDENTIFICAR-DUPLICADOS-1.PNG)
+![Vista previa del dataset](images/IDENTICAR-DUPLICADOS-1.PNG) 
 Posteriormente, se analizó si existían registros con características idénticas entre distintos clientes, es decir, filas con los mismos valores en múltiples variables del dataset, aunque con identificadores diferentes. Este análisis permitió identificar combinaciones de variables repetidas que representan perfiles de clientes con características similares.
 
 ```sql
