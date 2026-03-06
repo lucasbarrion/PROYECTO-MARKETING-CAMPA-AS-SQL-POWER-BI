@@ -227,5 +227,15 @@ WHERE posicion IN (FLOOR((total + 1) / 2), CEIL((total + 1) / 2))
 GROUP BY Education;
 ```
 
-![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-6.PNG)  
+![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-6.PNG)
+
+```sql
+UPDATE pro_mark.marketing_campaign_clean m
+SET Income = (
+    SELECT mediana_ingreso 
+    FROM pro_mark.vista_mediana_education v 
+    WHERE v.Education = m.Education
+)
+WHERE m.Income IS NULL OR m.Income = 0;
+```
 
