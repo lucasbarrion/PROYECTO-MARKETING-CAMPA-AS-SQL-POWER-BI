@@ -173,7 +173,7 @@ FROM pro_mark.marketing_campaign_clean;
 
 
 
-```sql
+
 SELECT DISTINCT
     Dt_Customer,
     TRIM(Dt_Customer) AS dt_customer_clean
