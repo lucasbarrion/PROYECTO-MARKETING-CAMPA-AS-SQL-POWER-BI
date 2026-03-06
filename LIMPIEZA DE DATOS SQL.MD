@@ -229,6 +229,11 @@ GROUP BY Education;
 
 ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-6.PNG)
 
+Una vez calculadas las medianas y almacenadas en la vista vista_mediana_education, se procedió a la actualización de la tabla original marketing_campaign_clean. En lugar de realizar cambios manuales fila por fila, se utilizó una subconsulta correlacionada para garantizar la integridad de los datos.
+
+Lógica de la Actualización
+El comando ejecutado busca cada registro donde el ingreso es nulo o cero y le asigna el valor correspondiente de la vista basándose en el nivel educativo del cliente.
+
 ```sql
 UPDATE pro_mark.marketing_campaign_clean m
 SET Income = (
