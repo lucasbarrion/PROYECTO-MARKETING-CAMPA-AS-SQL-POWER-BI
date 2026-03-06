@@ -147,13 +147,24 @@ Sin embargo, dado que los identificadores de cliente son distintos, estos regist
 
 ### Paso 2: Estandarización de datos
 
+## Cambiar de nombre la columna - columna ï»¿ID
+
 En esta etapa se realizó la estandarización de algunos elementos del dataset con el objetivo de mejorar la consistencia y facilitar el análisis posterior. Durante la revisión de la estructura de la tabla se detectó que la columna correspondiente al identificador del cliente presentaba caracteres adicionales debido al proceso de importación del archivo CSV.
 
 Para corregir este problema, se renombró la columna eliminando los caracteres innecesarios y dejando únicamente el nombre ID. Esta modificación permite trabajar con el identificador del cliente de forma clara y evita posibles errores en las consultas SQL posteriores.
+
 ```sql
 ALTER TABLE pro_mark.marketing_campaign_clean
 CHANGE COLUMN `ï»¿ID` ID INT;
 ```
 ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-1.PNG)
 
+### Eliminación de espacios en blanco con TRIM
 
+Se verificó la presencia de espacios en blanco en las columnas categóricas del dataset (Education, Marital_Status y Dt_Customer) utilizando la función TRIM(). Esta revisión permite detectar inconsistencias en los valores de texto que podrían afectar procesos de filtrado, agrupación o análisis posterior.
+```sql                                                                  ```sql                                                        ```sql
+SELECT DISTINCT                                                           SELECT DISTINCT                                               SELECT DISTINCT        
+    Dt_Customer,                                                            Marital_Status,                                             Education,
+    TRIM(Dt_Customer) AS dt_customer_clean                                  TRIM(Dt_Customer) AS dt_customer_clean                      TRIM(Education) AS education_clean, 
+FROM pro_mark.marketing_campaign_clean;                                    FROM pro_mark.marketing_campaign_clean;                      FROM pro_mark.marketing_campaign_clean;
+```                                                                       ```                                                            ```
