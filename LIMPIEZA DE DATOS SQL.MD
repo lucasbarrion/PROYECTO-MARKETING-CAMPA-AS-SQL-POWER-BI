@@ -199,10 +199,9 @@ WHERE Income IS NULL;
 ```
 
 # Solución: Imputación por Mediana según el nivel de Educación
-Para no perder estos registros ni afectar la integridad del análisis, se optó por una imputación basada en contexto. En lugar de usar un promedio global, se reemplazaron los valores faltantes utilizando la mediana de ingresos de cada nivel educativo (Education).
+Para no borrar a esos clientes y perder información, decidimos completar los datos usando la mediana de ingresos de cada nivel educativo (Education).
 
-¿Por qué la mediana?
-Se eligió la mediana porque es una medida de tendencia central robusta que no se ve afectada por los valores atípicos (outliers) extremos presentes en este dataset, asegurando que el valor imputado sea representativo del grupo social del cliente.
+¿Por qué la mediana? Elegimos esta medida porque es más confiable que el promedio; Usamos el nivel educativo como referencia porque es el mejor indicador que tenemos para entender la posición económica del cliente. Al separar los ingresos por nivel de estudio, nos aseguramos de asignar valores que sean coherentes con la realidad profesional y social de cada persona.
 
 Valores calculados para la imputación:
 Utilizando una vista técnica (vista_mediana_education), se obtuvieron los siguientes valores redondeados para el reemplazo manual:
