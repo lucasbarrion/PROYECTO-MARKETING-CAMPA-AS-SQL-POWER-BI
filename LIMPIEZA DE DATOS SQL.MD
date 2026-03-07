@@ -88,7 +88,7 @@ FROM pro_mark.marketing_campaign;
 - **Permitir iteraciones y pruebas** durante el proceso de limpieza sin comprometer la integridad del dataset original.
 
 
-### Paso 1: Verificación de registros duplicados
+# Paso 1: Verificación de registros duplicados
 
 El primer paso del proceso de limpieza consistió en verificar la existencia de registros duplicados dentro del conjunto de datos. La presencia de duplicados puede afectar la calidad del análisis, generando resultados sesgados o interpretaciones incorrectas.
 
@@ -145,9 +145,9 @@ Se utilizó un CTE (WITH) para organizar la consulta en dos pasos: primero gener
 Sin embargo, dado que los identificadores de cliente son distintos, estos registros no se consideran duplicados reales, sino coincidencias en los atributos de algunos clientes. Por esta razón, no se eliminaron registros en esta etapa del proceso de limpieza.
 
 
-### Paso 2: Estandarización de datos
+# Paso 2: Estandarización de datos
 
-## Cambiar de nombre la columna - columna ï»¿ID
+### Cambiar de nombre la columna - columna ï»¿ID
 
 En esta etapa se realizó la estandarización de algunos elementos del dataset con el objetivo de mejorar la consistencia y facilitar el análisis posterior. Durante la revisión de la estructura de la tabla se detectó que la columna correspondiente al identificador del cliente presentaba caracteres adicionales debido al proceso de importación del archivo CSV.
 
@@ -184,7 +184,7 @@ FROM pro_mark.marketing_campaign_clean;
 
 
 
-## Eliminación de valores nulos — columna Income
+### Eliminación de valores nulos — columna Income
 
 Se detectó que en varias filas faltaban valores en la columna Income (Ingresos), lo que podría sesgar el análisis de segmentación, el cálculo del poder adquisitivo y el comportamiento de gasto de los clientes.
 
@@ -198,7 +198,7 @@ FROM pro_mark.marketing_campaign_clean
 WHERE Income IS NULL;
 ```
 
-# Solución: Imputación por Mediana según el nivel de Educación
+### Solución: Imputación por Mediana según el nivel de Educación
 Para no borrar a esos clientes y perder información, decidimos completar los datos usando la mediana de ingresos de cada nivel educativo (Education).
 
 ¿Por qué la mediana? Elegimos esta medida porque es más confiable que el promedio; Usamos el nivel educativo como referencia porque es el mejor indicador que tenemos para entender la posición económica del cliente. Al separar los ingresos por nivel de estudio, nos aseguramos de asignar valores que sean coherentes con la realidad profesional y social de cada persona.
@@ -243,3 +243,38 @@ SET Income = (
 WHERE m.Income IS NULL OR m.Income = 0;
 ```
 
+
+# Optimización de Estructura de Datos
+
+Para garantizar un análisis consciente y preciso en el escenario de negocio, se realizó una reingeniería manual de los tipos de datos en la tabla marketing_campaign_clean. Estos ajustes permiten que las herramientas de Business Intelligence (Power BI) interpreten la información de forma nativa y sin errores de cálculo.
+
+![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-7.PNG)
+
+1. Integridad y Unicidad
+Identificador Único (ID): Se estableció como Primary Key (PK) y Unique (UQ). Esto blinda la tabla contra registros duplicados, asegurando que cada métrica de gasto pertenezca a un único cliente real.
+
+2. Precisión Financiera y Monetaria
+Variables de Ingresos y Gastos: Las columnas de Income y todos los montos de consumo (MntWines, MntFruits, etc.) se transformaron de INT a DECIMAL(10,2).
+
+Impacto: Se eliminan los errores de redondeo, permitiendo capturar centavos en las transacciones y garantizando que el "Gasto Total" sea una cifra financiera exacta para el balance de marketing.
+
+3. Optimización de Lógica de Negocio
+Variables Binarias (Campañas y Quejas): Las respuestas a campañas (AcceptedCmp1-5), Response y Complain se configuraron como TINYINT(1).
+
+Impacto: Esta estandarización permite que el sistema reconozca automáticamente valores "Sí/No" (Booleanos), facilitando la creación de filtros de segmentación de clientes por tasa de conversión.
+
+Análisis Temporal: La columna Dt_Customer se corrigió a tipo DATE. Esto habilita el uso de jerarquías de tiempo (años, trimestres, meses) para medir la lealtad de los clientes a lo largo del tiempo.
+
+4. Eficiencia de Almacenamiento
+Variables de Perfil: Se migraron campos de texto genérico a VARCHAR(25) para Education y Marital_Status, y se utilizó YEAR(4) para Year_Birth.
+
+Contadores: Recency se ajustó a SMALLINT, optimizando el peso de la tabla en memoria sin sacrificar la capacidad de registro de días.
+
+5. Depuración de Variables Irrelevantes (Reducción de Ruido)
+Durante el proceso de estandarización, se identificaron columnas que no aportaban valor analítico al escenario de negocio.
+
+Variables Constantes: Se eliminaron las columnas Z_CostContact (valor fijo de 3) y Z_Revenue (valor fijo de 11).
+
+Justificación de Negocio: Al tener el mismo valor para todos los registros, estas variables tienen varianza cero. Esto significa que no sirven para segmentar clientes ni para predecir comportamientos, por lo que eliminarlas reduce el peso del dataset y clarifica el enfoque del análisis.
+
+![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-8.PNG)
