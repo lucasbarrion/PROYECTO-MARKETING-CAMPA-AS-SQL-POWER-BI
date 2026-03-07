@@ -188,7 +188,7 @@ FROM pro_mark.marketing_campaign_clean;
 
 Se detectó que en varias filas faltaban valores en la columna Income (Ingresos), lo que podría sesgar el análisis de segmentación, el cálculo del poder adquisitivo y el comportamiento de gasto de los clientes.
 
-Hallazgo: Se encontraron 24 valores nulos (NULL) o en cero dentro de la columna Income.
+Hallazgo: Se encontraron 24 valores nulos (NULL) dentro de la columna Income.
 
 ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-5.PNG)  
 
@@ -246,31 +246,39 @@ WHERE m.Income IS NULL OR m.Income = 0;
 
 ### Optimización de Estructura de Datos
 
-Para garantizar un análisis consciente y preciso en el escenario de negocio, se realizó una reingeniería manual de los tipos de datos en la tabla marketing_campaign_clean. Estos ajustes permiten que las herramientas de Business Intelligence (Power BI) interpreten la información de forma nativa y sin errores de cálculo.
+Limpieza y Preparación del Dataset 
+Para asegurar que el tablero en Power BI sea confiable y no presente sesgos, realicé una auditoría profunda y un ajuste de estructura en la tabla marketing_campaign_clean. Este proceso permitió destrabar errores técnicos y mejorar la calidad de la información.
 
-![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-7.PNG)
+1. Detección de Anomalías Críticas (Caso 1893, 1899 y 1900)
+Durante la estandarización de la columna Year_Birth, identifiqué tres registros con años de nacimiento anteriores a 1901.
 
-1. Control de duplicados (ID)
-Configuré la columna ID como Clave Primaria (PK) y Única (UQ). Con esto me aseguro de que no existan registros repetidos y que cada peso gastado se asigne a un único cliente real.
+![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-9.PNG)
 
-2. Precisión en el dinero (Income y Gastos)
-Cambié el formato de los ingresos y de todos los gastos en productos (MntWines, MntFruits, etc.) de números enteros a DECIMAL(10,2).
+El Problema Técnico: El formato YEAR en SQL solo acepta valores entre 1901 y 2155. Estos tres registros (ID 11004, 1150 y 7829) bloqueaban cualquier cambio de estructura en la base de datos.
 
-Por qué es importante: Al trabajar con finanzas, los centavos importan. Esto evita errores de redondeo y permite que el "Gasto Total" sea una cifra exacta para el balance de marketing.
+Impacto en el Análisis: Mantener clientes que hoy tendrían entre 126 y 133 años distorsionaría gravemente el promedio de edad y las segmentaciones generacionales del informe.
 
-3. Lógica de campañas y segmentación
-Respuestas de Campañas: Pasé las columnas de las campañas (1 a 5), la respuesta final y las quejas a TINYINT(1). Esto le avisa a Power BI que son valores de "Sí o No" (booleanos), facilitando mucho el armado de filtros de conversión.
+La Solución: Decidí eliminar estos registros atípicos. Una vez saneada la columna, el sistema permitió finalmente el cambio de tipo de dato, garantizando métricas de edad reales para el equipo de marketing.
 
-Fechas: El campo Dt_Customer ahora es de tipo DATE. Esto es clave para poder ver la lealtad del cliente por años, trimestres o meses en la línea de tiempo.
+2. Precisión Financiera y Monetaria (Mnt...)
+Transformé todas las columnas de consumo (MntWines, MntFruits, MntMeatProducts, etc.) y la de ingresos (Income) de números enteros a DECIMAL(10,2).
 
-4. Eficiencia y limpieza de campos constantes
-Limpieza de campos constantes: Eliminé las columnas Z_CostContact y Z_Revenue. Como tenían siempre el mismo valor (3 y 11), no servían para comparar clientes ni aportaban nada al análisis. Sacarlas hace que el modelo sea más liviano y prolijo.
+Justificación: Al trabajar con montos de dinero, el formato decimal es obligatorio para evitar errores de redondeo y asegurar que el "Gasto Total" sea una cifra exacta para el balance de marketing.
 
-5. Depuración de Variables Irrelevantes (Reducción de Ruido)
-Durante la estandarización, identifiqué columnas que no aportaban valor analítico al negocio:
+3. Lógica de Marketing y Conversión (AcceptedCmp, Complain, Response)
+Las respuestas a las campañas (1 a 5), las quejas (Complain) y la respuesta final (Response) se configuraron como TINYINT(1).
 
-Variables Constantes: Se eliminaron Z_CostContact (valor fijo de 3) y Z_Revenue (valor fijo de 11).
+Resultado: Esta estandarización permite que Power BI reconozca automáticamente estos valores como "Sí/No" (Booleanos), facilitando la creación de embudos de conversión y filtros de segmentación de forma inmediata.
 
-Justificación: Al tener el mismo valor para todos los registros, estas variables tienen varianza cero. Esto significa que no sirven para segmentar clientes ni para predecir comportamientos, por lo que eliminarlas reduce el peso del dataset y clarifica el enfoque del análisis.
+4. Normalización de Fechas y Eliminación de Ruido
+Fechas: Se corrigió Dt_Customer a formato DATE mediante un script, habilitando jerarquías de tiempo (años, meses) automáticas.
+```sql
+UPDATE pro_mark.marketing_campaign_clean 
+SET Dt_Customer = STR_TO_DATE(Dt_Customer, '%d/%m/%Y');
+```
+
+Depuración: Eliminé las columnas Z_CostContact y Z_Revenue. Al ser valores constantes (3 y 11) en todo el dataset, no aportaban variabilidad estadística y solo generaban ruido visual.
 
 ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-8.PNG)
+
+
