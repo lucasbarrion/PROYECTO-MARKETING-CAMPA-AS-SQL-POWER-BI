@@ -283,6 +283,6 @@ SET Dt_Customer = STR_TO_DATE(Dt_Customer, '%d/%m/%Y');
 
 Depuración: Eliminé las columnas Z_CostContact y Z_Revenue. Al ser valores constantes (3 y 11) en todo el dataset, no aportaban variabilidad estadística y solo generaban ruido visual.
 
-                                                                                                       ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-8.PNG)
+    ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-8.PNG)
 
 
