@@ -252,7 +252,9 @@ Para asegurar que el tablero en Power BI sea confiable y no presente sesgos, rea
 1. Detección de Anomalías Críticas (Caso 1893, 1899 y 1900)
 Durante la estandarización de la columna Year_Birth, identifiqué tres registros con años de nacimiento anteriores a 1901.
 
+
 ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-9.PNG)
+
 
 El Problema Técnico: El formato YEAR en SQL solo acepta valores entre 1901 y 2155. Estos tres registros (ID 11004, 1150 y 7829) bloqueaban cualquier cambio de estructura en la base de datos.
 
