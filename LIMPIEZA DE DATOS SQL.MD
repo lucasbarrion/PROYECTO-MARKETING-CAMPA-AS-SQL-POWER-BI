@@ -283,9 +283,15 @@ Transformé todas las columnas de consumo (MntWines, MntFruits, MntMeatProducts,
 Justificación: Al trabajar con montos de dinero, el formato decimal es obligatorio para evitar errores de redondeo y asegurar que el "Gasto Total" sea una cifra exacta para el balance de marketing.
 
 3. Lógica de Marketing y Conversión (AcceptedCmp, Complain, Response)
-Las respuestas a las campañas (1 a 5), las quejas (Complain) y la respuesta final (Response) se configuraron como TINYINT(1).
+Las respuestas a las campañas (1 a 5), las quejas (Complain) y la respuesta final (Response) se configuraron técnicamente como TINYINT(1).
 
-Resultado: Esta estandarización permite que Power BI reconozca automáticamente estos valores como "Sí/No" (Booleanos), facilitando la creación de embudos de conversión y filtros de segmentación de forma inmediata.
+Interpretación Binaria: Este tipo de dato funciona como un campo booleano (verdadero/falso) dentro de la base de datos.
+
+1 (Verdadero): Indica que la acción SÍ ocurrió (ej. el cliente aceptó la campaña o realizó una queja).
+
+0 (Falso): Indica que la acción NO ocurrió.
+
+Ventaja en el Análisis: Al usar esta estructura, Power BI reconoce automáticamente estas columnas como indicadores de éxito o fracaso, permitiendo calcular tasas de conversión y porcentajes de respuesta de forma inmediata sin necesidad de transformaciones extra.
 
 4. Normalización de Fechas y Eliminación de Ruido
 Fechas: Se corrigió Dt_Customer a formato DATE mediante un script, habilitando jerarquías de tiempo (años, meses) automáticas.
