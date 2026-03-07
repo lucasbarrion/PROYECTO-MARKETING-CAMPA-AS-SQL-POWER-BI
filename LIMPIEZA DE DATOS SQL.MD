@@ -250,31 +250,27 @@ Para garantizar un análisis consciente y preciso en el escenario de negocio, se
 
 ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-7.PNG)
 
-1. Integridad y Unicidad
-Identificador Único (ID): Se estableció como Primary Key (PK) y Unique (UQ). Esto blinda la tabla contra registros duplicados, asegurando que cada métrica de gasto pertenezca a un único cliente real.
+1. Control de duplicados (ID)
+Configuré la columna ID como Clave Primaria (PK) y Única (UQ). Con esto me aseguro de que no existan registros repetidos y que cada peso gastado se asigne a un único cliente real.
 
-2. Precisión Financiera y Monetaria
-Variables de Ingresos y Gastos: Las columnas de Income y todos los montos de consumo (MntWines, MntFruits, etc.) se transformaron de INT a DECIMAL(10,2).
+2. Precisión en el dinero (Income y Gastos)
+Cambié el formato de los ingresos y de todos los gastos en productos (MntWines, MntFruits, etc.) de números enteros a DECIMAL(10,2).
 
-Impacto: Se eliminan los errores de redondeo, permitiendo capturar centavos en las transacciones y garantizando que el "Gasto Total" sea una cifra financiera exacta para el balance de marketing.
+Por qué es importante: Al trabajar con finanzas, los centavos importan. Esto evita errores de redondeo y permite que el "Gasto Total" sea una cifra exacta para el balance de marketing.
 
-3. Optimización de Lógica de Negocio
-Variables Binarias (Campañas y Quejas): Las respuestas a campañas (AcceptedCmp1-5), Response y Complain se configuraron como TINYINT(1).
+3. Lógica de campañas y segmentación
+Respuestas de Campañas: Pasé las columnas de las campañas (1 a 5), la respuesta final y las quejas a TINYINT(1). Esto le avisa a Power BI que son valores de "Sí o No" (booleanos), facilitando mucho el armado de filtros de conversión.
 
-Impacto: Esta estandarización permite que el sistema reconozca automáticamente valores "Sí/No" (Booleanos), facilitando la creación de filtros de segmentación de clientes por tasa de conversión.
+Fechas: El campo Dt_Customer ahora es de tipo DATE. Esto es clave para poder ver la lealtad del cliente por años, trimestres o meses en la línea de tiempo.
 
-Análisis Temporal: La columna Dt_Customer se corrigió a tipo DATE. Esto habilita el uso de jerarquías de tiempo (años, trimestres, meses) para medir la lealtad de los clientes a lo largo del tiempo.
-
-4. Eficiencia de Almacenamiento
-Variables de Perfil: Se migraron campos de texto genérico a VARCHAR(25) para Education y Marital_Status, y se utilizó YEAR(4) para Year_Birth.
-
-Contadores: Recency se ajustó a SMALLINT, optimizando el peso de la tabla en memoria sin sacrificar la capacidad de registro de días.
+4. Eficiencia y limpieza de campos constantes
+Limpieza de campos constantes: Eliminé las columnas Z_CostContact y Z_Revenue. Como tenían siempre el mismo valor (3 y 11), no servían para comparar clientes ni aportaban nada al análisis. Sacarlas hace que el modelo sea más liviano y prolijo.
 
 5. Depuración de Variables Irrelevantes (Reducción de Ruido)
-Durante el proceso de estandarización, se identificaron columnas que no aportaban valor analítico al escenario de negocio.
+Durante la estandarización, identifiqué columnas que no aportaban valor analítico al negocio:
 
-Variables Constantes: Se eliminaron las columnas Z_CostContact (valor fijo de 3) y Z_Revenue (valor fijo de 11).
+Variables Constantes: Se eliminaron Z_CostContact (valor fijo de 3) y Z_Revenue (valor fijo de 11).
 
-Justificación de Negocio: Al tener el mismo valor para todos los registros, estas variables tienen varianza cero. Esto significa que no sirven para segmentar clientes ni para predecir comportamientos, por lo que eliminarlas reduce el peso del dataset y clarifica el enfoque del análisis.
+Justificación: Al tener el mismo valor para todos los registros, estas variables tienen varianza cero. Esto significa que no sirven para segmentar clientes ni para predecir comportamientos, por lo que eliminarlas reduce el peso del dataset y clarifica el enfoque del análisis.
 
 ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-8.PNG)
