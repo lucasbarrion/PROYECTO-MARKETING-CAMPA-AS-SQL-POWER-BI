@@ -244,10 +244,12 @@ WHERE m.Income IS NULL OR m.Income = 0;
 ```
 
 
-### Optimización de Estructura de Datos
+### Estandarización de Datos
 
-Limpieza y Preparación del Dataset 
-Para asegurar que el tablero en Power BI sea confiable y no presente sesgos, realicé una auditoría profunda y un ajuste de estructura en la tabla marketing_campaign_clean. Este proceso permitió destrabar errores técnicos y mejorar la calidad de la información.
+Modifiqué los tipos de datos de cada columna para que tenga sentido a la hora de hacer el análisis
+Para asegurar que el tablero en Power BI sea confiable y no presente sesgos, realicé una auditoría profunda y un ajuste de estructura en la tabla. Este proceso permitió destrabar errores técnicos y mejorar la calidad de la información mediante los siguientes cambios:
+
+![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-7.PNG)
 
 1. Detección de Anomalías Críticas (Caso 1893, 1899 y 1900)
 Durante la estandarización de la columna Year_Birth, identifiqué tres registros con años de nacimiento anteriores a 1901.
@@ -281,6 +283,6 @@ SET Dt_Customer = STR_TO_DATE(Dt_Customer, '%d/%m/%Y');
 
 Depuración: Eliminé las columnas Z_CostContact y Z_Revenue. Al ser valores constantes (3 y 11) en todo el dataset, no aportaban variabilidad estadística y solo generaban ruido visual.
 
-![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-8.PNG)
+                                                                                                       ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-8.PNG)
 
 
