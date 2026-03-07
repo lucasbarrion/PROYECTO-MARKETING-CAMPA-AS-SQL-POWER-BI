@@ -244,7 +244,7 @@ WHERE m.Income IS NULL OR m.Income = 0;
 ```
 
 
-# Optimización de Estructura de Datos
+### Optimización de Estructura de Datos
 
 Para garantizar un análisis consciente y preciso en el escenario de negocio, se realizó una reingeniería manual de los tipos de datos en la tabla marketing_campaign_clean. Estos ajustes permiten que las herramientas de Business Intelligence (Power BI) interpreten la información de forma nativa y sin errores de cálculo.
 
