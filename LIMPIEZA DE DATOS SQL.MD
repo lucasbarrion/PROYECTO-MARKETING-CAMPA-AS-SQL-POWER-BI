@@ -246,10 +246,23 @@ WHERE m.Income IS NULL OR m.Income = 0;
 
 ### Estandarización de Datos
 
-Modifiqué los tipos de datos de cada columna para que tenga sentido a la hora de hacer el análisis
-Para asegurar que el tablero en Power BI sea confiable y no presente sesgos, realicé una auditoría profunda y un ajuste de estructura en la tabla. Este proceso permitió destrabar errores técnicos y mejorar la calidad de la información mediante los siguientes cambios:
+Estado Inicial del Dataset
+Estructura original de la tabla antes del procesamiento
+Al recibir el dataset marketing_campaign, la tabla presentaba una estructura genérica en la que la mayoría de los campos estaban configurados por defecto como TEXT o INT. Como se observa en la siguiente imagen, esta era la base sin procesar:
+
+Falta de restricciones: Ninguna columna estaba definida como Clave Primaria (PK) o Not Null (NN).
+
+Formatos inconsistentes: Fechas y categorías de texto no tenían el formato técnico necesario para cálculos automáticos.
+
+Variables redundantes: Se incluían columnas con valores constantes que aún no habían sido depuradas.
+
+Esta situación inicial hacía imposible realizar un análisis directo en Power BI sin riesgo de obtener resultados erróneos o enfrentar problemas de compatibilidad.
+
 
 ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-7.PNG)
+
+Modifiqué los tipos de datos de cada columna para que tenga sentido a la hora de hacer el análisis
+Para asegurar que el tablero en Power BI sea confiable y no presente sesgos, realicé una auditoría profunda y un ajuste de estructura en la tabla. Este proceso permitió destrabar errores técnicos y mejorar la calidad de la información mediante los siguientes cambios:
 
 1. Detección de Anomalías Críticas (Caso 1893, 1899 y 1900)
 Durante la estandarización de la columna Year_Birth, identifiqué tres registros con años de nacimiento anteriores a 1901.
