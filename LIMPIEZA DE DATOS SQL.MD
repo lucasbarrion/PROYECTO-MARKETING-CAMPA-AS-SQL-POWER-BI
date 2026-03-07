@@ -280,8 +280,20 @@ Fechas: Se corrigió Dt_Customer a formato DATE mediante un script, habilitando 
 UPDATE pro_mark.marketing_campaign_clean 
 SET Dt_Customer = STR_TO_DATE(Dt_Customer, '%d/%m/%Y');
 ```
-
 Depuración: Eliminé las columnas Z_CostContact y Z_Revenue. Al ser valores constantes (3 y 11) en todo el dataset, no aportaban variabilidad estadística y solo generaban ruido visual.
+
+### Consolidación de la Estructura Técnica
+
+Tras haber completado la estandarización de datos y la limpieza de registros inconsistentes, la tabla ha quedado en condiciones óptimas para ser analizada. Como se observa en la arquitectura final, cada columna posee el tipo de dato que corresponde a su naturaleza de negocio, garantizando que no existan errores de interpretación al momento de generar los reportes.
+
+Integridad de Datos: El campo ID funciona como clave primaria única, asegurando que no haya duplicados en el conteo de clientes.
+
+Precisión de Métricas: Los ingresos y consumos se encuentran en formato decimal, permitiendo una exactitud financiera total.
+
+Disponibilidad para BI: Las fechas y variables de campaña están listas para ser usadas como filtros y líneas de tiempo en Power BI sin necesidad de transformaciones adicionales.
+
+Conclusión: El dataset marketing_campaign_clean ha pasado de ser un archivo de texto plano a una base de datos relacional robusta, libre de ruidos y valores atípicos, lista para la fase de visualización y extracción de insights.
+
 
   ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-8.PNG)
 
