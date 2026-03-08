@@ -1,4 +1,4 @@
- Descripción del Dataset
+# Descripción del Dataset
 
 El conjunto de datos utilizado en este proyecto corresponde a una base de datos de marketing que contiene información sobre clientes,
 su comportamiento de compra y su interacción con diferentes campañas promocionales de una empresa.
@@ -87,6 +87,7 @@ FROM pro_mark.marketing_campaign;
 - **Facilitar la reproducibilidad del análisis**, manteniendo separadas las etapas del procesamiento de datos.
 - **Permitir iteraciones y pruebas** durante el proceso de limpieza sin comprometer la integridad del dataset original.
 
+---
 
 # Paso 1: Verificación de registros duplicados
 
@@ -144,10 +145,9 @@ Se utilizó un CTE (WITH) para organizar la consulta en dos pasos: primero gener
 
 Sin embargo, dado que los identificadores de cliente son distintos, estos registros no se consideran duplicados reales, sino coincidencias en los atributos de algunos clientes. Por esta razón, no se eliminaron registros en esta etapa del proceso de limpieza.
 
+---
 
-# Paso 2: Estandarización de datos
-
-### Cambiar de nombre la columna - columna ï»¿ID
+# PASO 2  Cambiar de nombre la columna 
 
 En esta etapa se realizó la estandarización de algunos elementos del dataset con el objetivo de mejorar la consistencia y facilitar el análisis posterior. Durante la revisión de la estructura de la tabla se detectó que la columna correspondiente al identificador del cliente presentaba caracteres adicionales debido al proceso de importación del archivo CSV.
 
@@ -184,7 +184,7 @@ FROM pro_mark.marketing_campaign_clean;
 
 
 
-### Eliminación de valores nulos — columna Income
+# PASO 3 Eliminación de valores nulos — columna Income
 
 Se detectó que en varias filas faltaban valores en la columna Income (Ingresos), lo que podría sesgar el análisis de segmentación, el cálculo del poder adquisitivo y el comportamiento de gasto de los clientes.
 
@@ -244,7 +244,7 @@ WHERE m.Income IS NULL OR m.Income = 0;
 ```
 
 
-### Estandarización de Datos
+# PASO 4 Estandarización de Datos
 
 Estado Inicial del Dataset
 Estructura original de la tabla antes del procesamiento
@@ -318,7 +318,7 @@ Conclusión: El dataset marketing_campaign_clean ha pasado de ser un archivo de 
 
 ---
 
-# ## 📊 Resultado Final
+# 📊 Resultado Final
 
 ## **Después de aplicar el proceso completo de limpieza y transformación, el resultado es un conjunto de datos estructurado, confiable y listo para el análisis.**
 
