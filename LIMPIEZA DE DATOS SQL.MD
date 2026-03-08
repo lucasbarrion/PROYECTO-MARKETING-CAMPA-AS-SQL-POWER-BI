@@ -317,7 +317,7 @@ Conclusión: El dataset marketing_campaign_clean ha pasado de ser un archivo de 
   ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-8.PNG)
 
 
-📊 Resultado final
+📊 ## Resultado final
 Después de aplicar el proceso completo de limpieza y transformación, el resultado es un conjunto de datos estructurado, confiable y listo para el análisis .
 
 ✔ Sin duplicados ni errores: Se eliminaron registros redundantes e inconsistencias
