@@ -219,7 +219,6 @@ FROM (
         COUNT(*) OVER (PARTITION BY Education) as total
     FROM pro_mark.marketing_campaign_clean
     WHERE Income IS NOT NULL 
-      AND Income > 0
 ) AS subconsulta
 
 WHERE posicion IN (FLOOR((total + 1) / 2), CEIL((total + 1) / 2))
@@ -240,7 +239,7 @@ SET Income = (
     FROM pro_mark.vista_mediana_education v 
     WHERE v.Education = m.Education
 )
-WHERE m.Income IS NULL OR m.Income = 0;
+WHERE m.Income IS NULL ;
 ```
 
 
