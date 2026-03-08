@@ -302,17 +302,17 @@ MODIFY COLUMN MntGoldProds DECIMAL(10,2);
 Justificación: Al trabajar con montos de dinero, el formato decimal es obligatorio para evitar errores de redondeo y asegurar que el "Gasto Total" sea una cifra exacta para el balance de marketing.
 
 3. Lógica de Marketing y Conversión (AcceptedCmp, Complain, Response)
-Las respuestas a las campañas (1 a 5), las quejas (Complain) y la respuesta final (Response) se configuraron técnicamente como TINYINT(1).
+Las respuestas a las campañas (1 a 5), las quejas (Complain) y la respuesta final (Response) se configuraron técnicamente como BIT(1).
 
 ```sql
 ALTER TABLE pro_mark.marketing_campaign_clean 
-MODIFY COLUMN AcceptedCmp1 TINYINT(1),
-MODIFY COLUMN AcceptedCmp2 TINYINT(1),
-MODIFY COLUMN AcceptedCmp3 TINYINT(1),
-MODIFY COLUMN AcceptedCmp4 TINYINT(1),
-MODIFY COLUMN AcceptedCmp5 TINYINT(1),
-MODIFY COLUMN Complain TINYINT(1),
-MODIFY COLUMN Response TINYINT(1);
+MODIFY COLUMN AcceptedCmp1 BIT(1),
+MODIFY COLUMN AcceptedCmp2 BIT(1),
+MODIFY COLUMN AcceptedCmp3 BIT(1),
+MODIFY COLUMN AcceptedCmp4 BIT(1),
+MODIFY COLUMN AcceptedCmp5 BIT(1),
+MODIFY COLUMN Complain BIT(1),
+MODIFY COLUMN Response BIT(1);
 ```
 
 Interpretación Binaria: Este tipo de dato funciona como un campo booleano (verdadero/falso) dentro de la base de datos.
