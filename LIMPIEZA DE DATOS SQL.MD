@@ -317,3 +317,11 @@ Conclusión: El dataset marketing_campaign_clean ha pasado de ser un archivo de 
   ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-8.PNG)
 
 
+📊 Resultado final
+Después de aplicar el proceso completo de limpieza y transformación, el resultado es un conjunto de datos estructurado, confiable y listo para el análisis .
+
+✔ Sin duplicados ni errores: Se eliminaron registros redundantes e inconsistencias
+✔ Estructura homogénea: Se normalizaron los datos y se estandarizaron las columnas
+✔ Mayor calidad y precisión: Se redujeron los valores NULL y se optimizó el conjunto de datos
+
+Este tipo de limpieza es un paso fundamental en cualquier canal de datos, ya que garantiza una base sólida para paneles de control, informes o modelos predictivos.
