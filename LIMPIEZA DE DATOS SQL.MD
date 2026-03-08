@@ -272,6 +272,11 @@ SELECT * FROM pro_mark.marketing_campaign
 WHERE Year_Birth < 1901;
 ```
 
+```sql
+ALTER TABLE pro_mark.marketing_campaign_clean 
+MODIFY COLUMN Year_Birth YEAR(4)
+```
+
 ![Vista previa del dataset](images/ESTANDARIZACIÓN-DE-DATOS-9.PNG)
 
 
@@ -284,10 +289,32 @@ La Solución: Decidí eliminar estos registros atípicos. Una vez saneada la col
 2. Precisión Financiera y Monetaria (Mnt...)
 Transformé todas las columnas de consumo (MntWines, MntFruits, MntMeatProducts, etc.) y la de ingresos (Income) de números enteros a DECIMAL(10,2).
 
+```sql
+ALTER TABLE pro_mark.marketing_campaign_clean 
+MODIFY COLUMN Income DECIMAL(10,2),
+MODIFY COLUMN MntWines DECIMAL(10,2),
+MODIFY COLUMN MntFruits DECIMAL(10,2),
+MODIFY COLUMN MntMeatProducts DECIMAL(10,2),
+MODIFY COLUMN MntFishProducts DECIMAL(10,2),
+MODIFY COLUMN MntSweetProducts DECIMAL(10,2),
+MODIFY COLUMN MntGoldProds DECIMAL(10,2);
+```
+
 Justificación: Al trabajar con montos de dinero, el formato decimal es obligatorio para evitar errores de redondeo y asegurar que el "Gasto Total" sea una cifra exacta para el balance de marketing.
 
 3. Lógica de Marketing y Conversión (AcceptedCmp, Complain, Response)
 Las respuestas a las campañas (1 a 5), las quejas (Complain) y la respuesta final (Response) se configuraron técnicamente como TINYINT(1).
+
+```sql
+ALTER TABLE pro_mark.marketing_campaign_clean 
+MODIFY COLUMN AcceptedCmp1 TINYINT(1),
+MODIFY COLUMN AcceptedCmp2 TINYINT(1),
+MODIFY COLUMN AcceptedCmp3 TINYINT(1),
+MODIFY COLUMN AcceptedCmp4 TINYINT(1),
+MODIFY COLUMN AcceptedCmp5 TINYINT(1),
+MODIFY COLUMN Complain TINYINT(1),
+MODIFY COLUMN Response TINYINT(1);
+```
 
 Interpretación Binaria: Este tipo de dato funciona como un campo booleano (verdadero/falso) dentro de la base de datos.
 
@@ -299,11 +326,22 @@ Ventaja en el Análisis: Al usar esta estructura, Power BI reconoce automáticam
 
 4. Normalización de Fechas y Eliminación de Ruido
 Fechas: Se corrigió Dt_Customer a formato DATE mediante un script, habilitando jerarquías de tiempo (años, meses) automáticas.
+
+
 ```sql
 UPDATE pro_mark.marketing_campaign_clean 
 SET Dt_Customer = STR_TO_DATE(Dt_Customer, '%d/%m/%Y');
+
+ALTER TABLE pro_mark.marketing_campaign_clean 
+MODIFY COLUMN Dt_Customer DATE;
 ```
 Depuración: Eliminé las columnas Z_CostContact y Z_Revenue. Al ser valores constantes (3 y 11) en todo el dataset, no aportaban variabilidad estadística y solo generaban ruido visual.
+
+```sql
+ALTER TABLE pro_mark.marketing_campaign_clean 
+DROP COLUMN Z_CostContact, 
+DROP COLUMN Z_Revenue;
+```
 
 ### Consolidación de la Estructura Técnica
 
