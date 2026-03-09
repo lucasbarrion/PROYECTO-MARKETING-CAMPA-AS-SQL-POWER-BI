@@ -2,7 +2,7 @@
 
 
 
-###Formateo de Métricas Financieras - INCOME A MONEDA
+### Formateo de Métricas Financieras - INCOME A MONEDA
 Antes de iniciar con el modelado avanzado, procedí a estandarizar la visualización de la columna Income para que refleje su naturaleza monetaria:
 
 Configuración de Moneda: En la pestaña Herramientas de columnas, cambié el formato a Moneda ($),
@@ -15,7 +15,7 @@ eliminando la necesidad de editar etiquetas manualmente en cada visualización.
 
 
 
-###Creación de Tabla de Fechas (Calendario DAX)
+### Creación de Tabla de Fechas (Calendario DAX)
 Una vez que las métricas financieras estuvieron listas, creé una Tabla de Calendario para potenciar el análisis temporal del proyecto:
 
 Propósito: Esta tabla es fundamental para utilizar funciones de Inteligencia de Tiempo (Time Intelligence) y evitar saltos en las líneas de tiempo si existen días sin registros en la columna Dt_Customer.
@@ -44,7 +44,7 @@ ADDCOLUMNS (
 
 
 
-###Modelado de Datos: Relación de Inteligencia de Tiempo
+### Modelado de Datos: Relación de Inteligencia de Tiempo
 El paso final de la arquitectura de datos consistió en vincular la tabla de hechos con la dimensión temporal para habilitar análisis comparativos y evolutivos.
 
 Vinculación de Dt_Customer y Date
@@ -56,4 +56,4 @@ donde la tabla Calendario actúa como la "Dimensión" (valores únicos) y la tab
 Dirección de Filtro Única: Se definió que el flujo de filtrado sea desde Calendario hacia marketing_campaign_clean,
 asegurando que cualquier selección de Año, Mes o Trimestre actualice automáticamente todas las métricas de la campaña.
 
-images/POWER-BI-1.PNG
+ ![Vista previa del dataset](images/POWER-BI-1.PNG)
