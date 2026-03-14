@@ -1,7 +1,7 @@
 
 
 
-[Ver dashboard en Power BI](Customer%20Campaign%20Analytics.pbix)
+[Ver dashboard en Power BI](Customer%20Campaign%20Analytics pbix.pbix)
 
 Necesidades del cliente / Preguntas de negocio
 
