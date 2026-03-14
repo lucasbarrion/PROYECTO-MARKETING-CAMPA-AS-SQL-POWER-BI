@@ -1,5 +1,5 @@
 ![Vista previa del dataset](images/VISUALIZACION-POWER-BI-1.PNG)
-![Vista previa del dataset](images/VISUALIZACION-POWER-BI.2.PNG)
+![Vista previa del dataset](images/VISUALIZACION-POWER-BI-2.PNG)
 
 
 [⬇️ Descargar Customer Campaign Analytics.pbix](https://github.com/lucasbarrion/PROYECTO-MARKETING-CAMPA-AS-SQL-POWER-BI/raw/main/Customer%20Campaign%20Analytics.pbix)
