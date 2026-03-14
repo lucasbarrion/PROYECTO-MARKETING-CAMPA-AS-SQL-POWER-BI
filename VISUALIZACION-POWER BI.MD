@@ -1,7 +1,7 @@
 
 
 
-[Ver dashboard en Power BI](Customer%20Campaign%20Analytics pbix.pbix)
+[⬇️ Descargar Customer Campaign Analytics.pbix](https://github.com/lucasbarrion/PROYECTO-MARKETING-CAMPA-AS-SQL-POWER-BI/raw/main/Customer%20Campaign%20Analytics.pbix)
 
 Necesidades del cliente / Preguntas de negocio
 
