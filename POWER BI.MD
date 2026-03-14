@@ -3,7 +3,28 @@
 
 [Ver dashboard en Power BI](Customer%20Campaign%20Analytics.pbix)
 
+Necesidades del cliente / Preguntas de negocio
 
+### 1. Datos del cliente
+Conocer quiénes son nuestros clientes: sus ingresos, edades, nivel educativo, 
+estado civil y cantidad de hijos en el hogar. Construir un perfil demográfico 
+completo que permita entender a quién le estamos hablando.
+
+### 2. Segmentación de clientes en el mercado
+Identificar cómo se comportan nuestros clientes: qué consumen, cuál es su 
+modo de compra preferido (web, catálogo, tienda, ofertas), cuántas visitas 
+realizan por la web, cuántos días pasaron desde su última compra y cuántas 
+quejas registraron. Esta segmentación permite agrupar clientes con 
+comportamientos similares para orientar mejor las acciones de marketing.
+
+### 3. Ajustes en las campañas
+Medir el éxito o fracaso de cada campaña de marketing. Analizar qué 
+segmentos de clientes respondieron positivamente, cuál fue la tasa de 
+aceptación por campaña y qué perfil de cliente tiene mayor probabilidad 
+de aceptar una oferta. Esta información permite tomar decisiones sobre 
+cómo mejorar, ajustar o rediseñar las próximas campañas.
+
+---
 
 ### 🧑 Customer Profile
 Análisis del perfil demográfico del cliente orientado a la segmentación 
