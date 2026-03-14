@@ -370,3 +370,11 @@ Conclusión: El dataset marketing_campaign_clean ha pasado de ser un archivo de 
 ---
 
 ### **Este tipo de limpieza es un paso fundamental en cualquier canal de datos, ya que garantiza una base sólida para paneles de control, informes o modelos predictivos.**
+
+
+
+## 🇪🇸 Feedback y Mejora Continua
+
+Siempre busco refinar mi flujo de trabajo y mis habilidades técnicas. Valoraría mucho cualquier comentario o sugerencia respecto al proceso de **Limpieza de Datos (ETL)** .
+
+Ya sean consejos de optimización, una forma más escalable de manejar el modelo de datos o un enfoque diferente para las visualizaciones, ¡tus ideas son más que bienvenidas!
